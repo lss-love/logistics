@@ -19,4 +19,7 @@
         SELECT * FROM userwithgroup uwg join functionwithgroup fwg on uwg.group_id = fwg.group_id
         where uwg.user_id = #{loginId}
     </select>
+    <update id="changePassword" parameterType="string">
+        update user set password = #{newPassword} where login_id = #{loginId}
+    </update>
 </mapper>

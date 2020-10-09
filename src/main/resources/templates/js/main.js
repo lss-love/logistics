@@ -66,7 +66,7 @@ layui.use(['layer', 'form', 'element', 'jquery'], function () {
         mainLayout.removeClass('hide-side');
     });
 
-    $("#username").append($.cookie("loginId"));
+    $("#username").append(login);
 });
 
 function logout() {

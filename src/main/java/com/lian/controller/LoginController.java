@@ -1,5 +1,6 @@
 package com.lian.controller;
 
+import com.lian.common.ResultJson;
 import com.lian.entity.FunctionWithGroup;
 import com.lian.service.LoginService;
 import io.swagger.annotations.Api;
@@ -45,6 +46,19 @@ public class LoginController {
     public List<FunctionWithGroup> selectFunc(@PathVariable("loginId") String loginId) {
         List<FunctionWithGroup> list = loginService.selectFunc(loginId);
         return list;
+    }
+
+    /**
+     * 修改当前用户密码
+     * @param oldPassword 前端传入的老密码
+     * @param newPassword 前端传入的新密码
+     * @return 成功返回code= 1
+     */
+    @RequestMapping("/change.do")
+    @ResponseBody
+    public ResultJson changePassword(String oldPassword,String newPassword,String loginId) {
+        loginService.changePassword(oldPassword,newPassword,loginId);
+        return new ResultJson(1,"修改密码成功!");
     }
 
 }

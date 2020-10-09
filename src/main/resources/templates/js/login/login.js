@@ -15,7 +15,6 @@ layui.use(['layer', 'form', 'jquery'], function() {
             dataType: 'json',
             async: false,
             success: function (result) {
-                console.log(result);
                 $.cookie("loginId",result.user);
                 if (result.status === "SUCCESS") {
                     console.log(result.user);

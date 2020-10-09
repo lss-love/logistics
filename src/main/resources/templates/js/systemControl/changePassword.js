@@ -1,3 +1,4 @@
+let loginId = $.cookie("loginId");
 layui.use(['layer', 'form', 'element', 'jquery'], function() {
 
     let element = layui.element,
@@ -9,7 +10,7 @@ layui.use(['layer', 'form', 'element', 'jquery'], function() {
 
         $.ajax({
             type: 'put',
-            url: nginx_url + '/change',
+            url: nginx_url + '/change.do',
             async: false,
             data: {
                 'loginId': $.cookie("loginId"),
@@ -19,13 +20,15 @@ layui.use(['layer', 'form', 'element', 'jquery'], function() {
             dataType: 'json',
             success: function (result) {
                 console.log(result);
-                if (result === 'SUCCESS') {
+                if (result.code == 1) {
                     layer.msg('密码修改成功', {
                         time: 800,
                         icon: 1
                     }, function () {
                         $('#passForm')[0].reset()
                     });
+                    alert(result.info);
+                    window.location.href = "../../index.html"
                 } else {
                     layer.msg('密码修改失败', {
                         time: 800,

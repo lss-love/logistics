@@ -39,4 +39,16 @@ public class LoginServiceImpl implements LoginService {
         List<FunctionWithGroup> list = loginDao.selectFunc(loginId);
         return list;
     }
+
+    @Override
+    public void changePassword(String oldPassword, String newPassword,String loginId) {
+        User user = loginDao.userlogin(loginId);
+        String password = user.getPassword();
+        if(password.equals(oldPassword)){
+            loginDao.changePassword(newPassword,loginId);
+        }else {
+            throw new RuntimeException("密码错误!");
+    }
+
+    }
 }

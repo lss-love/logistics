@@ -9,4 +9,6 @@ public interface LoginService {
     Map<String,Object> userlogin(String loginId, String password);
 
     List<FunctionWithGroup> selectFunc(String loginId);
+
+    void changePassword(String oldPassword, String newPassword,String loginId);
 }
