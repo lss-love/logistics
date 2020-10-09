@@ -71,5 +71,13 @@ layui.use(['layer', 'form', 'element', 'jquery'], function () {
 
 function logout() {
     $.cookie("loginId", null);
+    $.ajax({
+        type:"post",
+        url: "loginOut.do",
+        dataType:"json",
+        success:function (data) {
+            alert(data.info)
+        }
+    })
     window.location.href = "login.html";
 }

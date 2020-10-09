@@ -2,7 +2,9 @@ package com.lian.controller;
 
 import com.lian.common.ResultJson;
 import com.lian.entity.FunctionWithGroup;
+import com.lian.entity.User;
 import com.lian.service.LoginService;
+import com.lian.utils.StrUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -30,9 +33,23 @@ public class LoginController {
     @ApiOperation("用户登录")
     @RequestMapping("/login.do")
     @ResponseBody
-    public Map<String,Object> userlogin(String loginId, String password) {
+    public Map<String,Object> userlogin(String loginId, String password, HttpSession session) {
+        User user = loginService.getUser(loginId);
+        session.setAttribute(StrUtils.LOGIN_ID,user);
         Map<String,Object> map = loginService.userlogin(loginId,password);
         return map;
+    }
+
+    /**
+     * 退出功能
+     * @param session 共享域，清除共享域中的用户数据
+     * @return 成功返回code = 1，info
+     */
+    @RequestMapping("/loginOut.do")
+    @ResponseBody
+    public ResultJson loginOut(HttpSession session) {
+        session.removeAttribute(StrUtils.LOGIN_ID);
+        return new ResultJson(1,"退出成功!");
     }
 
     /**
