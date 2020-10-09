@@ -36,14 +36,16 @@ layui.use(['layer', 'form', 'element', 'jquery', 'table'], function() {
 });
 
 function createTime(v){
-    let dateTime;
-    let date = new Date();
-    date.setTime(v);
-    let y = date.getFullYear();
-    let m = date.getMonth() + 1;
-    m = m < 10 ? '0' + m : m;
-    let d = date.getDate();
-    d = d < 10 ? "0" + d : d;
-    dateTime = y + "-" + m + "-" + d;
+    let split = v.split('T');
+    let dateTime = split[0];
+    // let dateTime;
+    // let date = new Date();
+    // date.setTime(v);
+    // let y = date.getFullYear();
+    // let m = date.getMonth() + 1;
+    // m = m < 10 ? '0' + m : m;
+    // let d = date.getDate();
+    // d = d < 10 ? "0" + d : d;
+    // dateTime = y + "-" + m + "-" + d;
     return dateTime;
 }

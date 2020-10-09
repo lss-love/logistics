@@ -30,7 +30,7 @@ layui.use(['layer', 'form', 'element', 'jquery', 'table'], function() {
             , cols: [[
                 {title: 'ID', fixed: 'left', type: 'numbers', align: 'center'},
                 {field: 'billCode', title: '货运单编号', align: "center", sort: true},
-                {field: 'writeDate', title: '填写日期', align: 'center', templet: '#createTime'},
+                {field: 'writeDate', title: '填写日期', align: 'center',templet: '#createTime' },
                 {fixed: 'right', title: "操作", align: "center", toolbar: '#barDemo', width: 200}
             ]]
         });
@@ -92,14 +92,16 @@ layui.use(['layer', 'form', 'element', 'jquery', 'table'], function() {
 });
 
 function createTime(v){
-    let dateTime;
-    let date = new Date();
-    date.setTime(v);
-    let y = date.getFullYear();
-    let m = date.getMonth() + 1;
-    m = m < 10 ? '0' + m : m;
-    let d = date.getDate();
-    d = d < 10 ? "0" + d : d;
-    dateTime = y + "-" + m + "-" + d;
+    let split = v.split('T');
+    let dateTime = split[0];
+    // let dateTime;
+    // let date = new Date();
+    // date.setTime(v);
+    // let y = date.getFullYear();
+    // let m = date.getMonth() + 1;
+    // m = m < 10 ? '0' + m : m;
+    // let d = date.getDate();
+    // d = d < 10 ? "0" + d : d;
+    // dateTime = y + "-" + m + "-" + d;
     return dateTime;
 }

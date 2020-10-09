@@ -18,7 +18,8 @@ public class CustomerDateConvert implements Converter<String, Date> {
     SimpleDateFormat[] sdfs = new SimpleDateFormat[]{
             new SimpleDateFormat("yyyy-MM-dd"),
             new SimpleDateFormat("yyyyMMdd"),
-            new SimpleDateFormat("yyyy年MM月dd日")
+            new SimpleDateFormat("yyyy年MM月dd日"),
+            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     };
     @Override
     public Date convert(String s) {

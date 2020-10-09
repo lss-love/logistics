@@ -15,9 +15,9 @@ public class BillInfo {
 	private String billCode;
 	//订单状态
 	private String billState;
-	//
+	//填写日期
 	private Date writeDate;
-
+	//接收地址
 	private String acceptStation;
 
 	public BillInfo() {
