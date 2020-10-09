@@ -20,11 +20,12 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
             type: "PUT",
             url: nginx_url + "/updateDescription/" + groupId,
             data: {
+                groupName: $("#groupName").val(),
                 description: $("#description").val()
             },
             dataType: "json",
             success: function (result) {
-                if (result === "SUCCESS") {
+                if (result.code == 1) {
                     layer.msg('更新成功', {
                         time: 800,
                         icon: 1

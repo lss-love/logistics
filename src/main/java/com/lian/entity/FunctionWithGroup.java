@@ -23,6 +23,10 @@ public class FunctionWithGroup {
 		this.functionId = functionId;
 		this.groupId = groupId;
 	}
+	public FunctionWithGroup(int functionId, int groupId) {
+		this.functionId = functionId;
+		this.groupId = groupId;
+	}
 
 	public int getId() {
 		return id;

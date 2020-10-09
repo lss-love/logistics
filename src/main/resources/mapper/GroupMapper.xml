@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lian.dao.GroupDao">
+    <resultMap id="UserGroup" type="com.lian.entity.UserGroup">
+        <id column="id" property="id"></id>
+        <result column="description" property="description"></result>
+        <result column="group_name" property="groupName"></result>
+    </resultMap>
+    <resultMap id="FunctionWithGroup" type="com.lian.entity.FunctionWithGroup">
+        <id column="id" property="id"></id>
+        <result column="function_id" property="functionId"></result>
+        <result column="group_id" property="groupId"></result>
+    </resultMap>
+    <resultMap id="Function" type="com.lian.entity.Function">
+        <result column="page_function" property="pageFunction"></result>
+        <result column="page_name" property="pageName"></result>
+    </resultMap>
+    <select id="selectAllGroup" resultMap="UserGroup">
+        select * from usergroup
+    </select>
+    <delete id="deleteGroup" parameterType="int">
+        delete from usergroup where id = #{id}
+    </delete>
+    <select id="selectGroup" parameterType="int" resultType="com.lian.entity.UserGroup">
+        select * from usergroup where id = #{id}
+    </select>
+    <update id="updateDescription" parameterType="map">
+        update usergroup set description = #{description},group_name = #{groupName} where id = #{groupId} ;
+    </update>
+    <select id="selectAllFunction" resultMap="Function">
+        select * from function
+    </select>
+    <select id="selectFunctionByGroup" parameterType="int" resultMap="FunctionWithGroup">
+        select * from functionwithgroup where group_id = #{value}
+    </select>
+    <insert id="addGroup" parameterType="map">
+        insert into usergroup(description,group_name) values (#{description},#{groupName})
+    </insert>
+    <insert id="saveFunction" parameterType="com.lian.entity.FunctionWithGroup">
+        insert into functionwithgroup(function_id,group_id) values (#{functionId},#{groupId})
+    </insert>
+</mapper>

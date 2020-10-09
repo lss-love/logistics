@@ -51,7 +51,6 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
                             success: function (result) {
                                 console.log(result);
                             }
-
                         });
                         layer.msg('删除成功', {
                             time: 800,
@@ -85,7 +84,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
             groupId.append('<option value="">请选择用户组</option>');
             $.ajax({
                 type: 'get',
-                url: nginx_url + '/selectAllUserFroup',
+                url: nginx_url + '/selectAllUserGroup',
                 dataType: 'json',
                 async: false,
                 success: function (result) {
@@ -146,7 +145,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
             data: $("#empForm").serialize(),
             success: function (result) {
                 console.log(result);
-                if (result === "SUCCESS") {
+                if (result.code == 1) {
                     layer.msg('用户组添加成功', {
                         time: 800
                     });
@@ -157,7 +156,6 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
                     });
                 }
             }
-
         });
         return false;
     });
@@ -183,7 +181,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
             dataType: 'json',
             async: false,
             success: function (result) {
-                if (result === 'SUCCESS') {
+                if (result.code == 1) {
                     layer.msg('添加成功', {
                         time: 800,
                         icon: 1
