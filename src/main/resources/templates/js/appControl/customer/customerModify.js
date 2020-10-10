@@ -35,7 +35,7 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
             dataType: "json",
             success: function (result) {
                 console.log(result);
-                if (result === "SUCCESS") {
+                if (result.code == 1) {
                     layer.msg('更新成功', {
                         time: 800,
                         icon: 1
@@ -50,7 +50,6 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
                     });
                 }
             }
-
         });
         return false;
     });

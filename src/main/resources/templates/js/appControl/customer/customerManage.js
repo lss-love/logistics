@@ -109,7 +109,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
             dataType: "json",
             success: function (result) {
                 console.log(result);
-                if (result === "SUCCESS") {
+                if (result.code == 1) {
                     layer.msg('客户添加成功', {
                         time: 800
                     });

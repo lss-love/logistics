@@ -34,6 +34,22 @@ public class CustomerInfo {
 
 	}
 
+	public CustomerInfo(String customer, String phone, String fax, String address,
+						String postCode, String linkman, String linkmanMobile, String customerType, String enterpriseProperty,
+						String enterpriseSize, String email) {
+		super();
+		this.customer = customer;
+		this.phone = phone;
+		this.fax = fax;
+		this.address = address;
+		this.postCode = postCode;
+		this.linkman = linkman;
+		this.linkmanMobile = linkmanMobile;
+		this.customerType = customerType;
+		this.enterpriseProperty = enterpriseProperty;
+		this.enterpriseSize = enterpriseSize;
+		this.email = email;
+	}
 	public CustomerInfo(String customerCode, String customer, String phone, String fax, String address,
 			String postCode, String linkman, String linkmanMobile, String customerType, String enterpriseProperty,
 			String enterpriseSize, String email) {
