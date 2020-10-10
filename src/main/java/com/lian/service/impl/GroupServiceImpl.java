@@ -18,7 +18,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public List<UserGroup> selectAllGroup(Integer pageNum, Integer limit) {
-        PageHelper.startPage(pageNum,limit);
+        PageHelper.startPage(pageNum, limit);
         List<UserGroup> list = groupDao.selectAllGroup();
         return list;
     }
@@ -36,7 +36,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public void updateDescription(String groupName, String description, int groupId) {
-        groupDao.updateDescription(groupId,description,groupName);
+        groupDao.updateDescription(groupId, description, groupName);
     }
 
     @Override
@@ -59,17 +59,36 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public void addGroup(String groupName, String description) {
-        groupDao.addGroup(groupName,description);
+        groupDao.addGroup(groupName, description);
     }
 
     @Override
-    public void addNewFunc(int groupId, int[] array) {
+    public void addNewFunc(Integer groupId, Integer[] array) {
+        List<FunctionWithGroup> list = groupDao.selectFunctionByGroup(groupId);
+
+        //把array里面的数放到数组array1里面
+        int[] array1 = new int[list.size()];
+        int i = 0;
+        for (FunctionWithGroup fwg : list) {
+            array1[i] = fwg.getFunctionId();
+        }
+
         FunctionWithGroup functionWithGroup = new FunctionWithGroup();
-        System.out.println(array);
-        for (int fwg:array) {
-            functionWithGroup.setFunctionId(fwg);
-            functionWithGroup.setGroupId(groupId);
-            groupDao.saveFunction(functionWithGroup);
+        //遍历数据库中的function，如果已存在相应的function，过滤掉不添加
+        for (int i1 = 0; i1 < array.length; i1++) {
+            int num = 0;
+
+            for (int a = 1; a <= list.size(); a++) {
+                if (array[i1] == array1[a-1]) {
+                    num++;
+                }
+                if (a == list.size() && num == 0) {
+                    functionWithGroup.setFunctionId(array[i1]);
+                    functionWithGroup.setGroupId(groupId);
+                    groupDao.saveFunction(functionWithGroup);
+                }
+            }
         }
     }
+
 }

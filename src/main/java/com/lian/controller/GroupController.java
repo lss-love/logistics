@@ -15,6 +15,7 @@ import java.util.List;
 
 @Controller
 public class GroupController{
+
     @Autowired
     private GroupService groupService;
 
@@ -100,7 +101,6 @@ public class GroupController{
     @RequestMapping("/selectFunctionByGroup/{value}")
     @ResponseBody
     public List<FunctionWithGroup> selectFunctionByGroup(@PathVariable("value") int value){
-        System.out.println(value);
         List<FunctionWithGroup> list = groupService.selectFunctionByGroup(value);
         return list;
     }
@@ -126,8 +126,8 @@ public class GroupController{
      */
     @RequestMapping("/addNewFunc")
     @ResponseBody
-    public ResultJson addNewFunc(int groupId, @RequestParam("array []") int [] array){
-        System.out.println(groupId+" "+array);
+    public ResultJson addNewFunc(Integer groupId,@RequestParam("array[]") Integer [] array){
+        System.out.println(groupId+" "+array.length);
         groupService.addNewFunc(groupId,array);
         return new ResultJson(1,"添加用户组功能成功!");
     }

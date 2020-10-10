@@ -24,5 +24,5 @@ public interface GroupService {
 
     void addGroup(String groupName, String description);
 
-    void addNewFunc(int groupId, int[] array);
+    void addNewFunc(Integer groupId, Integer[] array);
 }

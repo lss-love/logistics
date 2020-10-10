@@ -176,7 +176,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
             url: nginx_url + '/addNewFunc',
             data: {
                 'groupId': $("#groupId").val(),
-                'array': array
+                'array':array
             },
             dataType: 'json',
             async: false,
