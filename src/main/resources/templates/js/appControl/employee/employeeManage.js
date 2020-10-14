@@ -106,7 +106,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
             data: $("#empForm").serialize(),
             dataType: "json",
             success: function (result) {
-                if (result === "SUCCESS") {
+                if (result.code == 1) {
                     layer.msg('职员添加成功', {
                         time: 800
                     });
@@ -144,15 +144,17 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
 });
 
 function createTime(v){
-    let dateTime;
-    let date = new Date();
-    date.setTime(v);
-    let y = date.getFullYear();
-    let m = date.getMonth() + 1;
-    m = m < 10 ? '0' + m : m;
-    let d = date.getDate();
-    d = d < 10 ? "0" + d : d;
-    dateTime = y + "-" + m + "-" + d;
+    let split = v.split('T');
+    let dateTime = split[0];
+    // let dateTime;
+    // let date = new Date();
+    // date.setTime(v);
+    // let y = date.getFullYear();
+    // let m = date.getMonth() + 1;
+    // m = m < 10 ? '0' + m : m;
+    // let d = date.getDate();
+    // d = d < 10 ? "0" + d : d;
+    // dateTime = y + "-" + m + "-" + d;
     return dateTime;
 }
 

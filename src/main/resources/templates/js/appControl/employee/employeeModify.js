@@ -9,22 +9,25 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
     $.ajax({
         type: "get",
         url: nginx_url + "/selectEmpByCode/" + employeeCode,
+        dataType:"json",
         success: function (result) {
-            $("#employeeCode").val(result.employee.employeeCode);
-            $("#employeeName").val(result.employee.employeeName);
-            $("#department").val(result.employee.department);
-            $("#position").val(result.employee.position);
+            alert(result);
+            $("#employeeCode").val(result.employeeCode);
+            $("#employeeName").val(result.employeeName);
+            $("#department").val(result.department);
+            $("#position").val(result.position);
+            $("#birthday").val(result.birthday);
             form.render('select');
             $(":radio[name='gender'][value='" + result.employee.gender + "']").prop("checked", "checked");
             $(":radio[name='gender']").prop("disabled", "disabled");
             $(":radio[name='condition'][value='" + result.condition + "']").prop("checked", "checked");
-            form.render("radio");
-            laydate.render({
-                elem: '#birthday',
-                type: 'date',
-                value: new Date(result.employee.birthday)
-                // theme: 'grid'
-            });
+            // form.render("radio");
+            // laydate.render({
+            //     elem: '#birthday',
+            //     type: 'date',
+            //     value: new Date(result.birthday)
+            //     // theme: 'grid'
+            // });
 
         }
     });
@@ -37,7 +40,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
             dataType: "json",
             success: function (result) {
                 console.log(result);
-                if (result === "SUCCESS") {
+                if (result.code == 1) {
                     layer.msg('更新成功', {
                         time: 800
                     }, function () {

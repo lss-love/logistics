@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lian.dao.EmployeeDao">
+    <resultMap id="selectAllEmp" type="com.lian.entity.Employee">
+        <id column="employee_code" property="employeeCode"></id>
+        <result column="employee_name" property="employeeName"></result>
+    </resultMap>
+    <resultMap id="selectAllUserFroup" type="com.lian.entity.UserGroup">
+        <result column="group_name" property="groupName"></result>
+    </resultMap>
+   <select id="selectAllEmp" resultMap="selectAllEmp">
+       select * from employee
+   </select>
+    <delete id="deleteEmp" parameterType="string">
+        delete from employee where employee_code = #{employee_code}
+    </delete>
+    <insert id="addEmp" parameterType="com.lian.entity.Employee">
+        insert into employee(employee_code,birthday,department,employee_name,gender,position) values(#{employeeCode},#{birthday},#{department},#{employeeName},#{gender},#{position})
+    </insert>
+    <select id="selectAllUserFroup" resultMap="selectAllUserFroup">
+        select * from usergroup
+    </select>
+    <select id="selectEmpByCode" parameterType="string" resultMap="selectAllEmp">
+        select * from employee
+    </select>
+    <update id="updateEmp" parameterType="com.lian.entity.Employee">
+        update employee set employee_code = #{employeeCode},birthday = #{birthday},birthday = #{birthday},employee_name = #{employeeName},gender = #{gender},position = #{position}
+        where employee_code = #{employeeCode}
+    </update>
+</mapper>
