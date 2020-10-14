@@ -39,8 +39,10 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
         dataType: 'json',
         success: function (result) {
             cityId = result.cityId;
+            alert(cityArray);
             $("#cityId").val(cityArray[cityId-1]);
-            selected = result.rangeCity.split(',');
+            selected = result.rangeCity.split(",");
+            alert(selected);
             refreshInt();
             refreshSelect();
             $.each(selected, function (i, item) {
@@ -75,7 +77,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             },
             dataType: 'json',
             success: function (result) {
-                if (result === 'SUCCESS') {
+                if (result.code == 1) {
                     layer.msg('修改成功', {
                         time: 800,
                         icon: 1

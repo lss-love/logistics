@@ -54,7 +54,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
                     async: false,
                     success: function (result) {
                         console.log(result);
-                        if (result === 'SUCCESS') {
+                        if (result.code == 1) {
                             layer.msg('删除成功', {
                                 time: 800,
                                 icon: 1
@@ -102,7 +102,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             },
             dataType: 'json',
             success: function (result) {
-                if (result === 'SUCCESS') {
+                if (result.code == 1) {
                     layer.msg('添加成功', {
                         time: 800,
                         icon: 1

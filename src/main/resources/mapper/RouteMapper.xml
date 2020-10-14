@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lian.dao.RouteDao">
+    <resultMap id="cityExpand" type="com.lian.entity.CityExpand">
+        <result column="city_id" property="cityId"></result>
+        <result column="range_city" property="rangeCity"></result>
+    </resultMap>
+    <resultMap id="findAllRoutes" type="com.lian.entity.RouteInfo">
+        <result column="end_station" property="endStation"></result>
+        <result column="fetch_time" property="fetchTime"></result>
+        <result column="pass_station" property="passStation"></result>
+        <result column="start_station" property="startStation"></result>
+    </resultMap>
+    <select id="findAllRegions" resultType="com.lian.entity.Region">
+        select * from region
+    </select>
+    <select id="findAllExpands" resultMap="cityExpand">
+        select * from cityexpand
+    </select>
+    <insert id="add" parameterType="map">
+        insert into cityexpand (city_id,range_city) values (#{cityId},#{rangeCity});
+    </insert>
+    <select id="findAllRoutes" resultMap="findAllRoutes">
+        select * from routeinfo
+    </select>
+    <delete id="delete" parameterType="int">
+        delete from cityexpand where id = #{id}
+    </delete>
+    <update id="update" parameterType="map">
+        update cityexpand set city_id = #{cityId},range_city = #{rangeCity} where id = #{expandId}
+    </update>
+    <select id="findExpand" parameterType="int" resultMap="cityExpand">
+        select * from cityexpand where id = #{findExpand}
+    </select>
+</mapper>
