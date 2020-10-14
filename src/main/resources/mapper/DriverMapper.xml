@@ -2,7 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lian.dao.DriverDao">
+    <resultMap id="selectAllByPage" type="com.lian.entity.DriverInfo">
+        <result column="allow_carry_volume" property="allowCarryVolume"></result>
+        <result column="allow_carry_weight" property="allowCarryWeight"></result>
+        <result column="biz_licence" property="bizLicence"></result>
+        <result column="car_dept" property="carDept"></result>
+        <result column="car_dept_tel" property="carDeptTel"></result>
+        <result column="car_frame_no" property="carFrameNo"></result>
+        <result column="car_length" property="carLength"></result>
+        <result column="car_width" property="carWidth"></result>
+        <result column="engine_no" property="engineNo"></result>
+        <result column="drive_licence" property="driveLicence"></result>
+        <result column="company_car" property="companyCar"></result>
+        <result column="goods_height" property="goodsHeight"></result>
+        <result column="id_card" property="idCard"></result>
+        <result column="insurance_card" property="insuranceCard"></result>
+        <result column="run_licence" property="runLicence"></result>
+        <result column="driver_name" property="driverName"></result>
+        <result column="car_no" property="carNo"></result>
+        <result column="car_type" property="carType"></result>
+    </resultMap>
     <select id="selectAllId" resultType="com.lian.entity.DriverInfo">
         select * from driverinfo
     </select>
+    <insert id="DriverInfo" parameterType="com.lian.entity.DriverInfo">
+        insert into driverinfo(id, address, allow_carry_volume,allow_carry_weight, birthday, biz_licence,
+            car_dept, car_dept_tel ,car_frame_no,
+            car_length, car_no, car_type, car_width,
+            company_car, drive_licence,driver_name,
+            engine_no,gender, goods_height,id_card,
+            insurance_card,phone, remark, run_licence, state)
+        values (#{id}, #{address}, #{allowCarryVolume},#{allowCarryWeight},#{birthday}, #{bizLicence},#{carDept}, #{carDeptTel}, #{carFrameNo},#{carLength}, #{carNo}, #{carType}, #{carWidth},#{companyCar}, #{driveLicence},#{driverName},#{engineNo},#{gender},#{goodsHeight},#{idCard},#{insuranceCard},#{phone},#{remark},#{runLicence},#{state})
+    </insert>
+    <select id="selectAllByPage" resultMap="selectAllByPage">
+        select id,driver_name,phone,state,car_no,car_type from driverinfo
+    </select>
+    <delete id="delete" parameterType="string">
+        delete from driverinfo where id = #{id}
+    </delete>
+    <select id="selectById" parameterType="string" resultMap="selectAllByPage">
+        select * from driverinfo where id = #{driverId}
+    </select>
+    <update id="update" parameterType="com.lian.entity.DriverInfo">
+        update driverinfo set address=#{address}, allow_carry_volume = #{allowCarryVolume},allow_carry_weight = #{allowCarryWeight}, birthday = #{birthday}, biz_licence = #{bizLicence},
+            car_dept = #{carDept}, car_dept_tel = #{carDeptTel},car_frame_no = #{carFrameNo},
+            car_length = #{carLength}, car_no = #{carNo}, car_type = #{carType}, car_width = #{carWidth},
+            company_car = #{companyCar}, drive_licence = #{driveLicence},driver_name = #{driverName},
+            engine_no = #{engineNo},gender = #{gender}, goods_height = #{goodsHeight},id_card = #{idCard},
+            insurance_card = #{insuranceCard},phone = #{phone}, remark = #{remark}, run_licence = #{runLicence}, state = #{state}
+            where id = #{id}
+    </update>
 </mapper>

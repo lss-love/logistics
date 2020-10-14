@@ -84,7 +84,8 @@ public class AppController {
 
     /**
      * 添加用户信息
-     * @return 修改成功返回code = 1，info
+     * @param customer 前端的参数，放在实体类里面
+     * @return 添加成功返回code = 1，info
      */
     @RequestMapping("/addCus")
     @ResponseBody

@@ -42,9 +42,10 @@ layui.use(['layer', 'form', 'element', 'laydate', 'jquery', 'table'], function()
             type: 'put',
             url: nginx_url + '/driverInfo/update/' + driverId,
             data: $("#driverForm").serialize(),
-            dataType: 'json',
+            dataType: "json",
             success: function (result) {
-                if (result === "SUCCESS") {
+                console.log(result);
+                if (result.code == 1) {
                     layer.msg('更新成功', {
                         time: 800,
                         icon: 1
