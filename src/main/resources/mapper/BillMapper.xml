@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lian.dao.BillDao">
-    <resultMap id="findByPage" type="com.lian.entity.BillInfo">
+    <resultMap id="billinfo" type="com.lian.entity.BillInfo">
         <id column="id" property="id"></id>
         <result column="accept_station" property="acceptStation"></result>
         <result column="bill_code" property="billCode"></result>
@@ -10,11 +10,17 @@
         <result column="bill_type" property="billType"></result>
         <result column="write_date" property="writeDate"></result>
     </resultMap>
-    <select id="findByPage" resultMap="findByPage">
+    <select id="findByPage" resultMap="billinfo">
         select * from billinfo
     </select>
-    <insert id="addRelease" parameterType="map">
-        insert into billrelease(release_person,receive_bill_person,receive_bill_time,accept_station,bill_code)
-        values (#{releasePerson},#{receiveBillPerson},#{receiveBillTime},#{acceptStation},#{bill_code})
+    <insert id="addRelease" parameterType="com.lian.entity.BillRelease">
+        insert into billrelease(release_person,receive_bill_person,receive_bill_time,accept_station,bill_code,bill_type)
+        values (#{releasePerson},#{receiveBillPerson},#{receiveBillTime},#{acceptStation},#{billCode},"未到")
     </insert>
+    <select id="findNotRelease" resultMap="billinfo">
+        select * from billinfo where bill_state = "待发" and bill_type = "货运单" and bill_code not in (select bill_code from billrelease)
+    </select>
+    <update id="updateGoodsBillEvent" parameterType="com.lian.entity.GoodsBillEvent">
+        update goodsbillevent set event_name = #{eventName},occur_time = #{occurTime} where goods_bill_id = #{goodsBillId}
+    </update>
 </mapper>

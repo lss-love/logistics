@@ -11,6 +11,7 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
         type: "get",
         url: nginx_url + "/goodsBill/selectByCode/" + goodsBillCode,
         async: false,
+        dataType:"json",
         success: function (result) {
             $.each(result, function (i, item) {
                 let temp_id = '#' + i;

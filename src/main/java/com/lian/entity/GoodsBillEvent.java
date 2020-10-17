@@ -9,7 +9,7 @@ import java.util.Date;
 public class GoodsBillEvent {
 	//货物订单id
 	private String goodsBillId;
-	//时间名字
+	//事件名字
 	private String eventName;
 	//备注
 	private String remark;

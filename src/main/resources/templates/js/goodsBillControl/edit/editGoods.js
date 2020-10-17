@@ -6,15 +6,16 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function(){
     table = layui.table;
 
     let goodsBillCode = window.location.href.split("=")[1];
+    alert(goodsBillCode);
     form.on('submit(addGoods)', function (data) {
         $.ajax({
             type: "post",
-            url: nginx_url + "/goodsBill/addGoods/" + goodsBillCode ,
+            url: nginx_url + "/goodsBill/addGoods?goodsBillCode=" + goodsBillCode,
             data: $("#goodsForm").serialize(),
             dataType: "json",
             success: function (result) {
                 console.log(result);
-                if (result === "SUCCESS") {
+                if (result.code == 1) {
                     layer.msg('货物添加成功', {
                         time: 800
                     }, function () {

@@ -14,4 +14,6 @@ public interface AppService {
     void updateCustomerInfo(CustomerInfo customerInfo);
 
     void addCus(CustomerInfo customerInfo);
+
+    List<CustomerInfo> selectAllCusCode();
 }

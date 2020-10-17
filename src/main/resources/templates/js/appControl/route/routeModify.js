@@ -39,10 +39,8 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
         dataType: 'json',
         success: function (result) {
             cityId = result.cityId;
-            alert(cityArray);
             $("#cityId").val(cityArray[cityId-1]);
             selected = result.rangeCity.split(",");
-            alert(selected);
             refreshInt();
             refreshSelect();
             $.each(selected, function (i, item) {

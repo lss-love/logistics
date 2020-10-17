@@ -108,6 +108,7 @@ layui.use(['element', 'form', 'laydate', 'jquery', 'layer', 'table'], function()
     $.ajax({
         type: "get",
         url: nginx_url + "/selectAllCusCode",
+        dataType:"json",
         success: function (result) {
             $.each(result, function (i, item) {
                 let option = "<option value='" + item + "'>";

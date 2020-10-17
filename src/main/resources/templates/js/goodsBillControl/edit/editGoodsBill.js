@@ -29,12 +29,13 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
 
     $.ajax({
         type: "get",
-        url: nginx_url + "/selectAllCusCode",
+        url: nginx_url + "/selectAllCusCode1",
         async: false,
+        dataType:"json",
         success: function (result) {
             $.each(result, function (i, item) {
-                let option = "<option value='" + item + "'>";
-                option += item;
+                let option = "<option value='" + item.customerCode + "'>";
+                option += item.customerCode;
                 option += "</option>";
                 $("#sendGoodsCustomerNo").append(option);
                 $("#receiveGoodsCustomerCode").append(option);
@@ -49,6 +50,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
         $.ajax({
             type: 'get',
             url: nginx_url + '/selectCusByCode/' + data.value,
+            dataType:"json",
             success: function (result) {
                 $("#sendGoodsCustomer").val(result.customer);
                 $("#sendGoodsCustomerTel").val(result.phone);
@@ -62,6 +64,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
         $.ajax({
             type: 'get',
             url: nginx_url + '/selectCusByCode/' + data.value,
+            dataType:"json",
             success: function (result) {
                 $("#receiveGoodsCustomer").val(result.customer);
                 $("#receiveGoodsCustomerTel").val(result.phone);
@@ -97,7 +100,7 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table', 'jquery'], function()
             dataType: "json",
             async: false,
             success: function (result) {
-                if (result.status === "SUCCESS") {
+                if (result.code == 1) {
                     layer.msg('货运单添加成功', {
                         time: 800,
                         icon: 1

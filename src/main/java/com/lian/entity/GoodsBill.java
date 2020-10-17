@@ -31,49 +31,49 @@ public class GoodsBill {
 	private String sendGoodsAddr;
 	//接收地址
 	private String receiveGoodsAddr;
-	//提前发货日期
+	//预期交货日期
 	private Date predeliveryDate;
-	//实际发货日期
+	//实际交货日期
 	private Date factDealDate;
-	//
+	//代收货款
 	private double helpAcceptPayment;
-	//手续费
+	//代收手续费率
 	private String acceptProcedureRate;
-
+	//付款方式
 	private String payMode;
-
+	//取货方式
 	private String fetchGoodsMode;
-
+	//填票人
 	private String writeBillPerson;
-
+	//填写日期
 	private Date writeDate;
-
+	//是否有效
 	private boolean validity;
-
+	//是否审核
 	private boolean ifAudit;
-
+	//
 	private boolean ifSettleAccounts;
-
+	//中转地
 	private String transferStation;
-
+	//中转费
 	private double transferFee;
-
+	//减款
 	private double reduceFund;
-
+	//付回扣
 	private double payKickback;
-
+	//变更后金额
 	private double moneyOfChangePay;
-
+	//送货费
 	private double carryGoodsFee;
-
+	//运费
 	private double carriage;
-
+	//保险费
 	private double insurance;
-
+	//员工编号
 	private String employeeCode;
-
+	//备注
 	private String remark;
-
+	//接货点
 	private String acceptStation;
 
 	public GoodsBill() {

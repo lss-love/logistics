@@ -45,4 +45,12 @@ public class AppServiceImpl implements AppService {
         customerInfo.setCustomerCode(customerCode);
         appDao.addCus(customerInfo);
     }
+
+    @Override
+    public List<CustomerInfo> selectAllCusCode() {
+        List<CustomerInfo> list = appDao.selectAllCus();
+        return list;
+    }
+
+
 }

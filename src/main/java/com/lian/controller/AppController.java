@@ -4,7 +4,9 @@ import com.github.pagehelper.Page;
 import com.lian.common.ResultJson;
 import com.lian.common.TableResult;
 import com.lian.entity.CustomerInfo;
+import com.lian.entity.GoodsBill;
 import com.lian.service.AppService;
+import com.lian.service.GoodsBillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +20,11 @@ public class AppController {
 
     @Autowired
     private AppService appService;
+    @Autowired
+    private GoodsBillService goodsBillService;
 
     /**
-     * 根据顾客code查询大年顾客信息
+     * 根据顾客code查询顾客信息
      * @param customerCode 被查询顾客code
      * @return 被查询顾客的详细信息
      */
@@ -58,26 +62,15 @@ public class AppController {
     }
 
     /**
-     * 修改客户信息
-     * @param customerCode
-     * @param customer
-     * @param phone
-     * @param fax
-     * @param postCode
-     * @param address
-     * @param linkman
-     * @param linkmanMobile
-     * @param customerType
-     * @param enterpriseProperty
-     * @param enterpriseSize
-     * @param email
+     * 根据customerCode修改客户信息
+     * @param customerCode 被修改客户的code
+     * @param customerInfo 前端传入的更改信息
      * @return 修改成功返回code = 1，info
      */
     @RequestMapping("/updateCustomerInfo/{customerCode}")
     @ResponseBody
-    public ResultJson updateCustomerInfo(@PathVariable("customerCode") String customerCode,String customer,String phone,String fax,String postCode,String address,String linkman,
-                                         String linkmanMobile,String customerType,String enterpriseProperty,String enterpriseSize,String email){
-        CustomerInfo customerInfo = new CustomerInfo(customerCode,customer,phone,fax,postCode,address,linkman,linkmanMobile,customerType,enterpriseProperty,enterpriseSize,email);
+    public ResultJson updateCustomerInfo(@PathVariable("customerCode") String customerCode,CustomerInfo customerInfo){
+        customerInfo.setCustomerCode(customerCode);
         appService.updateCustomerInfo(customerInfo);
         return new ResultJson(1,"修改客户信息成功!");
     }
@@ -92,6 +85,27 @@ public class AppController {
     public ResultJson addCus(CustomerInfo customer){
         appService.addCus(customer);
         return new ResultJson(1,"添加客户成功!");
+    }
+
+    /**
+     * 查询所有顾客
+     * @return 装有所有顾客的List集合
+     */
+    @RequestMapping("/selectAllCusCode1")
+    @ResponseBody
+    public List<CustomerInfo> selectAllCusCode(){
+        List<CustomerInfo> list = appService.selectAllCusCode();
+        return list;
+    }
+
+    /**
+     * 查询所有GoodsBill信息
+     * @return 所有GoodsBill信息
+     */
+    @RequestMapping("/selectAllCusCode")
+    public List<GoodsBill> selectAllCusCode2(){
+        List<GoodsBill> list = goodsBillService.selectAllCusCode();
+        return list;
     }
 
 }

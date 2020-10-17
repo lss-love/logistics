@@ -38,7 +38,7 @@ public class SentList {
 	
 	private int pieceAmount;// 件数
 	
-	private String goodsRevertBillCode;// 货运回执单编�?
+	private String goodsRevertBillCode;// 货运回执单编号
 
 	public SentList() {
 		super();

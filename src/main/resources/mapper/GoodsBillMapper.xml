@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lian.dao.GoodsBillDao">
+    <resultMap id="goodsbill" type="com.lian.entity.GoodsBill">
+        <id column="goods_bill_code" property="goodsBillCode"></id>
+        <result column="accept_procedure_rate" property="acceptProcedureRate"></result>
+        <result column="accept_station" property="acceptStation"></result>
+        <result column="carry_goods_fee" property="carryGoodsFee"></result>
+        <result column="employee_code" property="employeeCode"></result>
+        <result column="fact_deal_date" property="factDealDate"></result>
+        <result column="fetch_goods_mode" property="fetchGoodsMode"></result>
+        <result column="help_accept_payment" property="helpAcceptPayment"></result>
+        <result column="if_audit" property="ifAudit"></result>
+        <result column="if_settle_accounts" property="ifSettleAccounts"></result>
+        <result column="money_of_change_pay" property="moneyOfChangePay"></result>
+        <result column="pay_kickback" property="payKickback"></result>
+        <result column="pay_mode" property="payMode"></result>
+        <result column="predelivery_date" property="predeliveryDate"></result>
+        <result column="receive_goods_addr" property="receiveGoodsAddr"></result>
+        <result column="receive_goods_customer" property="receiveGoodsCustomer"></result>
+        <result column="receive_goods_customer" property="receiveGoodsCustomer"></result>
+        <result column="receive_goods_customer_code" property="receiveGoodsCustomerCode"></result>
+        <result column="receive_goods_customer_tel" property="receiveGoodsCustomerTel"></result>
+        <result column="reduce_fund" property="reduceFund"></result>
+        <result column="send_goods_addr" property="sendGoodsAddr"></result>
+        <result column="send_goods_customer" property="sendGoodsCustomer"></result>
+        <result column="send_goods_customer_addr" property="sendGoodsCustomerAddr"></result>
+        <result column="send_goods_customer_no" property="sendGoodsCustomerNo"></result>
+        <result column="send_goods_customer_tel" property="sendGoodsCustomerTel"></result>
+        <result column="send_goods_date" property="sendGoodsDate"></result>
+        <result column="transfer_fee" property="transferFee"></result>
+        <result column="transfer_station" property="transferStation"></result>
+        <result column="write_bill_person" property="writeBillPerson"></result>
+        <result column="write_date" property="writeDate"></result>
+    </resultMap>
+    <resultMap id="goodsbillevent" type="com.lian.entity.GoodsBillEvent">
+        <id column="goods_bill_id" property="goodsBillId"></id>
+        <result column="event_name" property="eventName" ></result>
+        <result column="occur_time" property="occurTime" ></result>
+    </resultMap>
+    <select id="selectCusByCode" parameterType="string" resultMap="goodsbill">
+        select * from goodsbill where send_goods_customer_no = #{goodsBillCode}
+    </select>
+    <select id="selectAllCusCode" resultMap="goodsbill">
+        select * from goodsbill
+    </select>
+    <insert id="add" parameterType="com.lian.entity.GoodsBill">
+        insert into goodsbill
+            (goods_bill_code, accept_procedure_rate, accept_station, carriage,
+            carry_goods_fee, employee_code, fact_deal_date, fetch_goods_mode, help_accept_payment ,
+            if_audit, if_settle_accounts, insurance, money_of_change_pay , pay_kickback ,pay_mode ,
+            predelivery_date ,receive_goods_addr ,receive_goods_customer ,receive_goods_customer_addr,
+            receive_goods_customer_code ,receive_goods_customer_tel ,reduce_fund ,remark ,send_goods_addr ,
+            send_goods_customer ,send_goods_customer_addr ,send_goods_customer_no ,send_goods_customer_tel,
+            send_goods_date ,transfer_fee ,transfer_station ,validity ,write_bill_person ,write_date)
+        values
+        (#{goodsBillCode}, #{acceptProcedureRate}, #{acceptStation}, #{carriage},
+        #{carryGoodsFee},#{employeeCode},#{factDealDate},#{fetchGoodsMode},#{helpAcceptPayment},
+        #{ifAudit},#{ifSettleAccounts},#{insurance},#{moneyOfChangePay},#{payKickback},#{payMode},
+        #{predeliveryDate},#{receiveGoodsAddr},#{receiveGoodsCustomer},#{receiveGoodsCustomerAddr},
+        #{receiveGoodsCustomerCode},#{receiveGoodsCustomerTel},#{reduceFund},#{remark},#{sendGoodsAddr},
+        #{sendGoodsCustomer},#{sendGoodsCustomerAddr},#{sendGoodsCustomerNo},#{sendGoodsCustomerTel},
+        #{sendGoodsDate},#{transferFee},#{transferStation},#{validity},#{writeBillPerson},#{writeDate})
+    </insert>
+    <insert id="addGoods" parameterType="com.lian.entity.CargoReceiptDetail">
+        insert into cargoreceiptdetail(goods_revert_bill_id,piece_amount,weight,volume,price_mode,price_standard,goods_value)
+        values(#{goodsBillDetailId},#{pieceAmount},#{weight},#{volume},#{priceMode},#{priceStandard},#{goodsValue})
+    </insert>
+    <select id="selectByCode" parameterType="string" resultMap="goodsbill">
+        select * from goodsbill where goods_bill_code = #{goodsBillCode}
+    </select>
+    <select id="selectByEvent" parameterType="string" resultMap="goodsbillevent">
+        select * from goodsbillevent where event_name = #{id}
+    </select>
+    <select id="selectByEvent1" resultMap="goodsbillevent">
+        select * from goodsbillevent
+    </select>
+</mapper>

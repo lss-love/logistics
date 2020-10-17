@@ -16,4 +16,5 @@ public interface AppDao {
     void updateCustomerInfo(CustomerInfo customerInfo);
 
     void addCus(CustomerInfo customerInfo);
+
 }

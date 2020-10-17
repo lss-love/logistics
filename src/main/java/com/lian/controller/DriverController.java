@@ -48,7 +48,7 @@ public class DriverController {
     }
 
     /**
-     * 查询素有订单
+     * 查询所有订单
      * @param pageNum 前端传入的页数
      * @param limit 前端传入的页容量
      * @return 成功返回类TableResult

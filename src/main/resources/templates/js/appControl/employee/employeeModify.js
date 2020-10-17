@@ -11,7 +11,6 @@ layui.use(['element', 'form', 'laydate', 'layer', 'table'], function() {
         url: nginx_url + "/selectEmpByCode/" + employeeCode,
         dataType:"json",
         success: function (result) {
-            alert(result);
             $("#employeeCode").val(result.employeeCode);
             $("#employeeName").val(result.employeeName);
             $("#department").val(result.department);

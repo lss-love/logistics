@@ -1,6 +1,8 @@
 package com.lian.dao;
 
 import com.lian.entity.BillInfo;
+import com.lian.entity.BillRelease;
+import com.lian.entity.GoodsBillEvent;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +13,9 @@ import java.util.List;
 public interface BillDao {
     List<BillInfo> findByPage();
 
-    void addRelease(@Param("releasePerson") String releasePerson,@Param("receiveBillPerson") String receiveBillPerson, @Param("receiveBillTime") Date receiveBillTime, @Param("acceptStation") String acceptStation, @Param("bill_code") String bill_code);
+    void addRelease(BillRelease billInfo);
+
+    List<BillInfo> findNotRelease();
+
+    void updateGoodsBillEvent(GoodsBillEvent goodsBillEvent);
 }
