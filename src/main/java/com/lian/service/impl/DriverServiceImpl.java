@@ -26,6 +26,7 @@ public class DriverServiceImpl implements DriverService {
     public void addDriver(DriverInfo driverInfo) {
         String id = "";
         id+= RandomStringUtils.randomAlphabetic(5);
+        driverInfo.setState("空闲");
         driverInfo.setId(id);
         driverDao.DriverInfo(driverInfo);
     }
